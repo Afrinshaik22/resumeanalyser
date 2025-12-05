@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 import io
+import os
 from PyPDF2 import PdfReader
 
 app = Flask(__name__)
@@ -179,4 +180,6 @@ def analyze():
 
 if __name__ == "__main__":
     # For local development use only. In production, use a proper WSGI server.
-    app.run(debug=True)
+    # Bind to 0.0.0.0 so it works inside Docker containers.
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=False)
