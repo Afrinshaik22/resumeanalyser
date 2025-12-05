@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Resume Analyzer</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <header class="hero">
+        <div class="hero-content">
+          <h1>AI Resume Analyzer</h1>
+          <p>
+            Upload your resume PDF and get an instant, structured analysis with
+            domain classification, skills, strengths, weaknesses and suggested
+            improvements.
+          </p>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <section class="card upload-card">
+          <h2>Upload your resume</h2>
+          <p class="subtitle">
+            Supported format: <strong>PDF</strong> (max 5 MB)
+          </p>
+
+          <form id="resume-form" class="upload-form">
+            <div class="form-group file-group">
+              <label for="resume" class="file-label">Choose PDF file</label>
+              <input
+                type="file"
+                id="resume"
+                name="resume"
+                accept="application/pdf"
+                required
+              />
+              <span id="file-name" class="file-name">No file selected</span>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email (optional)</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email if you want to receive the report"
+              />
+            </div>
+
+            <button type="submit" class="btn-primary">Analyze Resume</button>
+
+            <div id="loading" class="loading hidden">Analyzing your resume...</div>
+            <div id="error" class="error-message"></div>
+          </form>
+        </section>
+
+        <section id="results" class="results hidden">
+          <h2>Analysis Report</h2>
+
+          <div class="grid">
+            <article class="card result-card">
+              <h3>Domain Classification</h3>
+              <p id="domain-value" class="result-pill">-</p>
+            </article>
+
+            <article class="card result-card">
+              <h3>Skills Detected</h3>
+              <ul id="skills-list" class="tag-list"></ul>
+            </article>
+
+            <article class="card result-card">
+              <h3>Strengths</h3>
+              <ul id="strengths-list" class="bullet-list"></ul>
+            </article>
+
+            <article class="card result-card">
+              <h3>Weaknesses</h3>
+              <ul id="weaknesses-list" class="bullet-list"></ul>
+            </article>
+
+            <article class="card result-card wide">
+              <h3>Suggested Improvements</h3>
+              <ul id="suggestions-list" class="bullet-list"></ul>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>
+          Built with <span class="accent">Python (Flask)</span> and
+          <span class="accent">HTML/CSS/JavaScript</span>.
+        </p>
+      </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+  </body>
+</html>
